@@ -4,7 +4,7 @@ import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import InputBase from "@mui/material/InputBase";
-import SearchIcon from "@mui/icons-material/SearchIcon";
+import SearchIcon from "@mui/icons-material/Search";
 import IconButton from "@mui/material/IconButton";
 
 const Search = styled("div")(({ theme }) => ({

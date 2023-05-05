@@ -21,7 +21,7 @@ import Grid from "@mui/material/Grid";
 import Item from "@mui/material/Grid";
 import Container from "@mui/material/Container";
 
-export default function CountriesCard() {
+export default function CountriesCard ( {country} ) {
   const [countriesData, setCountriesData] = useState([]); // This is the state variable that will store the data from the API
 
   useEffect(() => {
