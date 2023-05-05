@@ -3,11 +3,13 @@
 import React from "react";
 import "./App.css";
 import NavBar from "../NavBar/navBar";
+import CountriesList from "../CountriesList/countriesList";
 
 function App() {
   return (
     <div className="App">
       <NavBar />
+      <CountriesList />
     </div>
   );
 }
