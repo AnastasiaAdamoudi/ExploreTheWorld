@@ -6,8 +6,12 @@
     // Country population
     // Country region
     // Country capital
+// Map through the data and display the information in the card
+// How do we map through the data?
+// Initialise a state variable to store the data from the API
+// Use the useEffect hook to fetch the data from the API
 
-    import * as React from 'react';
+    import React, { useEffect, useState } from "react";
     import Card from '@mui/material/Card';
     import CardContent from '@mui/material/CardContent';
     import CardMedia from '@mui/material/CardMedia';
@@ -15,24 +19,43 @@
     import { CardActionArea } from '@mui/material';
     
     export default function CountriesCard() {
+        const [countriesData, setCountriesData] = useState([]); // This is the state variable that will store the data from the API
+
+        useEffect(() => {
+        async function getCountries() {
+            const response = await fetch("https://restcountries.com/v3.1/all"); // This is the API call to get the data of all countries
+            const countriesData = await response.json();
+            console.log(countriesData);
+            setCountriesData(countriesData); // This is the function that will update the state variable
+        }
+        getCountries(); // This is the function call
+        }, []); // This is the dependency array that will trigger the useEffect hook
+
       return (
         <Card sx={{ maxWidth: 345 }}>
           <CardActionArea>
+            {countriesData.map ((country) => {
+            return (
+            <div key={country.cca3}>
             <CardMedia
               component="img"
               height="140"
-              image="/static/images/cards/contemplative-reptile.jpg"
+              image={country.flags.png}
               alt="green iguana"
             />
             <CardContent>
               <Typography gutterBottom variant="h5" component="div">
-                Lizard
+                {country.name.common}
               </Typography>
               <Typography variant="body2" color="text.secondary">
-                Lizards are a widespread group of squamate reptiles, with over 6,000
-                species, ranging across all continents except Antarctica
+                Population: {country.population}
+                Region: {country.region}
+                Capital: {country.capital}
               </Typography>
             </CardContent>
+            </div>
+            );
+            })}
           </CardActionArea>
         </Card>
       );
