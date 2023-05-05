@@ -19,6 +19,7 @@ import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
 import Grid from "@mui/material/Grid";
 import Item from "@mui/material/Grid";
+import Container from "@mui/material/Container";
 
 export default function CountriesCard() {
   const [countriesData, setCountriesData] = useState([]); // This is the state variable that will store the data from the API
@@ -34,43 +35,44 @@ export default function CountriesCard() {
   }, []); // This is the dependency array that will trigger the useEffect hook
 
   return (
+    <Container maxWidth="xl" sx={{ flexGrow: 1, mt: "2em" }}>
     <Grid
       justifyContent="center"
       className="grid-container"
       container
-      spacing={{ xs: 2, md: 3 }}
-      columns={{ xs: 4, sm: 8, md: 12 }}
-    >
-      <Grid item xs={12} sm={6} md={4}>
+      spacing={{ xs: 2, sm: 2, md: 3 }}
+    //   columns={{ xs: 1, sm: 2, md: 4 }}
+     >
+      
+      {countriesData.map((country) => {
+              return (
+      <Grid item xs={12} sm={6} md={3} key={country.cca3}>
         <Card sx={{ maxWidth: 345 }}>
           <CardActionArea>
-            {countriesData.map((country) => {
-              return (
-                <Item key={country.cca3}>
-                  <div class="grid-item">
+                  <div class="grid-item" aria-label={country.name.common}>
                     <CardMedia
                       component="img"
-                      height="140"
+                      height="200"
                       image={country.flags.png}
-                      alt="green iguana"
+                      alt={country.flags.alt}
                     />
                     <CardContent>
                       <Typography gutterBottom variant="h5" component="div">
                         {country.name.common}
                       </Typography>
                       <Typography variant="body2" color="text.secondary">
-                        Population: {country.population}
-                        Region: {country.region}
-                        Capital: {country.capital}
+                        <p className="country-info-p">Population: {country.population} </p>
+                        <p className="country-info-p">Region: {country.region} </p>
+                        <p className="country-info-p">Capital: {country.capital} </p>
                       </Typography>
                     </CardContent>
                   </div>
-                </Item>
-              );
-            })}
           </CardActionArea>
         </Card>
       </Grid>
+      );
+    })}
     </Grid>
-  );
+    </Container>
+);
 }
