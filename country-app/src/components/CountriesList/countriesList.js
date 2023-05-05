@@ -21,7 +21,7 @@ import Grid from "@mui/material/Grid";
 import Item from "@mui/material/Grid";
 import Container from "@mui/material/Container";
 
-export default function CountriesCard ( {country} ) {
+export default function CountriesCard({ country }) {
   const [countriesData, setCountriesData] = useState([]); // This is the state variable that will store the data from the API
 
   useEffect(() => {
@@ -36,43 +36,54 @@ export default function CountriesCard ( {country} ) {
 
   return (
     <Container maxWidth="xl" sx={{ flexGrow: 1, mt: "2em" }}>
-    <Grid
-      justifyContent="center"
-      className="grid-container"
-      container
-      spacing={{ xs: 2, sm: 2, md: 3 }}
-    //   columns={{ xs: 1, sm: 2, md: 4 }}
-     >
-      
-      {countriesData.map((country) => {
-              return (
-      <Grid item xs={12} sm={6} md={3} key={country.cca3}>
-        <Card sx={{ maxWidth: 345 }}>
-          <CardActionArea>
-                  <div class="grid-item" aria-label={country.name.common}>
-                    <CardMedia
-                      component="img"
-                      height="200"
-                      image={country.flags.png}
-                      alt={country.flags.alt}
-                    />
-                    <CardContent>
-                      <Typography gutterBottom variant="h5" component="div">
-                        {country.name.common}
-                      </Typography>
-                      <Typography variant="body2" color="text.secondary">
-                        <p className="country-info-p">Population: {country.population} </p>
-                        <p className="country-info-p">Region: {country.region} </p>
-                        <p className="country-info-p">Capital: {country.capital} </p>
-                      </Typography>
-                    </CardContent>
-                  </div>
-          </CardActionArea>
-        </Card>
+      <Grid
+        justifyContent="center"
+        className="grid-container"
+        container
+        spacing={{ xs: 2, sm: 2, md: 3 }}
+        //   columns={{ xs: 1, sm: 2, md: 4 }}
+      >
+        {countriesData.map((country) => {
+          return (
+            <Grid item xs={12} sm={6} md={3} key={country.cca3}>
+              <a
+                href={country.maps.googleMaps}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <Card sx={{ maxWidth: 345 }}>
+                  <CardActionArea>
+                    <div class="grid-item" aria-label={country.name.common}>
+                      <CardMedia
+                        component="img"
+                        height="200"
+                        image={country.flags.png}
+                        alt={country.flags.alt}
+                      />
+                      <CardContent>
+                        <Typography gutterBottom variant="h5" component="div">
+                          {country.name.common}
+                        </Typography>
+                        <Typography variant="body2" color="text.secondary">
+                          <p className="country-info-p">
+                            Population: {country.population}{" "}
+                          </p>
+                          <p className="country-info-p">
+                            Region: {country.region}{" "}
+                          </p>
+                          <p className="country-info-p">
+                            Capital: {country.capital}{" "}
+                          </p>
+                        </Typography>
+                      </CardContent>
+                    </div>
+                  </CardActionArea>
+                </Card>
+              </a>
+            </Grid>
+          );
+        })}
       </Grid>
-      );
-    })}
-    </Grid>
     </Container>
-);
+  );
 }

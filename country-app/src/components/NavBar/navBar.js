@@ -13,8 +13,19 @@ export default function NavBar() {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
-        <Toolbar>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+        <Toolbar
+          sx={{
+            backgroundColor: "#38AECC",
+            boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)",
+          }}
+        >
+          <Typography
+            variant="h6"
+            component="div"
+            sx={{ flexGrow: 1 }}
+            fontFamily={"Castoro Titling"}
+            fontSize={"40px"}
+          >
             Explore the World 🌎
           </Typography>
           {/* <Button color="inherit">Login</Button> */}
